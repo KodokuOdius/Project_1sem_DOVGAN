@@ -7,7 +7,7 @@ while True:
     if var == "0":
         break
 
-    if var == "6":
+    elif var == "6":
         variant_6.solve()
 
     else:

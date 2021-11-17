@@ -80,7 +80,7 @@ def solve():
                 n = int(input("Введите N: "))
                 k = int(input("Введите K: "))
                 if n <= k or k <= 1:
-                    print("Данны не подходят по условию (N > K > 1)")
+                    print("Данные не подходят по условию (N > K > 1)")
                     continue
                 list = GenList(n)
 

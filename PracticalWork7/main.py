@@ -1,4 +1,4 @@
-from exersices import variant_6
+from exercises import variant_6
 
 while True:
     var = input("Введите номер варианта: ")

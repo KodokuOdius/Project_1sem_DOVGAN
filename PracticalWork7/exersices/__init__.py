@@ -1,1 +1,1 @@
-from exercises import variant_6
+from exersices import variant_6

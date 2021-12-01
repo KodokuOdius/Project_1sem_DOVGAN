@@ -18,37 +18,67 @@
 """
 
 from random import randint
+from collections import Counter # Счётчик повторяющихся элментов
 
 def solve():
     def ex1():
         while True:
             try:
                 n = int(input("Введите длинну последовательности: "))
-                list = [randint(-100, 100) for i in range(0, n)]
-                print(list)
+                list1 = [randint(-10, 10) for _ in range(0, n)]
+
+                prod = 1
+                for i in list1:
+                    prod *= i
+                # Подсчёт повторяющихся элементов
+                count = Counter(list1)
+                temp_count = {}
+                for i in count:
+                    if count[i] > 1:
+                        temp_count[i] = count[i]
+                # ', '.join() убираю скобки и вывожу список без скобок
+                text = (
+                    "=====> Ответ на задание <====\n" +
+                    f"Исходные данные: {', '.join(str(i) for i in list1)}\n" +
+                    f"Количество элементов: {n}\n" +
+                    f"Сумма элементов: {sum(list1)}\n" +
+                    f"Произведение элементов: {prod}\n" +
+                    f"Повторяющиеся элементы: {', '.join(str(i) for i in temp_count)}\n" +
+                    f"Количество повторяющихся элементов: {', '.join(str(temp_count[i]) for i in temp_count)}\n" +
+                    f"Всего: {sum([temp_count[i] for i in temp_count])}\n" +
+                    f"Элементы больше 5 увеличены в два раза: {', '.join(str(2*dig) if dig>5 else str(dig) for dig in list1)}\n" +
+                    "ㄟ(≧◇≦)ㄏ"
+                )
+
+                new_file = open("PracticalWork10/new_file.txt", "w", encoding="utf-8")
+                new_file.write(text)
+                new_file.close()
+                return print("Файл создан!\n")
             except ValueError:
                 print("Введите целое число\n")
 
+
     def ex2():
-        filele = open("text18-6.txt", encoding="utf-8")
-        text = filele.read()
+        my_file = open("PracticalWork10/text18-6.txt", encoding="utf-8")
+        text = my_file.read()
         print(text)
         space = 0
         for sybl in str(text):
             if sybl == " ":
                 space += 1
+                continue
             if sybl == "\n":
                 continue
             if not sybl.isalpha():
                 text = text.replace(sybl, "!", 1)
 
-
         print(f"\nКоличество пробелов: {space}\n")
-        print(text)
-        filele.close()
+        print(text, end="\n\n")
 
-        new_file = open("new_text18-6.txt", "w+", encoding="utf-8")
+        new_file = open("PracticalWork10/new_text18-6.txt", "w", encoding="utf-8")
         new_file.write(text)
+
+        my_file.close()
         new_file.close()
 
 

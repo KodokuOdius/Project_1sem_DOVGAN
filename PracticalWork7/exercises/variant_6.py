@@ -26,11 +26,11 @@ def solve():
 
             c = str(unicodedata.name(c)).split(" ")[0]
             if c == "DIGIT":
-                return print("Ответ: digit")
+                return print("Ответ: digit\n")
             elif c == "LATIN":
-                return print("Ответ: lat")
+                return print("Ответ: lat\n")
             elif c == "CYRILLIC":
-                return print("Ответ: rus")
+                return print("Ответ: rus\n")
             else:
                 print("Ответ: другой символ\n")
 
@@ -51,12 +51,14 @@ def solve():
                 else:
                     temp_sen += letter
 
-            return print(str(temp_sen))
+            return print(str(temp_sen), end="\n\n")
 
     while True:
-        ex = input("Введите номер задания: ")
+        ex = input("Введите номер (0 - выход) задания: ")
 
-        if ex == "1":
+        if ex == "0":
+            return print("Выход из варианта\n")
+        elif ex == "1":
             print("Условие:")
             print(
                 "1. Дан символ С, изображающий цифру или букву (латинскую или русскую).\n" +

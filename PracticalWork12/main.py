@@ -18,10 +18,6 @@
 
 from tkinter import *
 
-
-def pp(event):
-    print("Hello, World!!")
-
 root = Tk()
 root.title("Registration form")
 root.resizable(

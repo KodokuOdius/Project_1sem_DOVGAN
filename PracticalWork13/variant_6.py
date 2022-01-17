@@ -9,8 +9,6 @@
 # регистра в нижний.
 
 
-from ast import YieldFrom
-
 
 def weatherPrase():
     from settings import wTOKEN
@@ -71,13 +69,15 @@ def ex1():
 
 def ex2():
 
-    def change_text(sent):
+    def Yfunc(sent):
         yield sent.lower()
 
     text = input("Введите текст:\n")
-    text = change_text(text)
+
+    text = list(Yfunc(text))
+
     print("Новый текст:")
-    print(text)
+    print(*text)
 
 
 while True:
@@ -119,9 +119,9 @@ while True:
     elif ex == "2":
         print("Условие:")
         print(
-            "2.  Составить  генератор  (yield),\n"
-            "который  переведет  символы  строки  из  верхнего\n"
-            "регистра в нижний."
+            "2.  Составить  генератор  (yield),\n" +
+            "который  переведет  символы  строки\n" +
+            "из  верхнего регистра в нижний."
         )
         ex2()
 

@@ -71,7 +71,7 @@ def solve():
         file=files["out2"]
     )
 
-    print(*result, sep=' ')
+    print(*list(result), sep=' ')
     print(f"Всего {_with_two_zeros_ip + _others} ip-адресов")
     print(f"В первом файле (_temp1.txt) {_with_two_zeros_ip} ip-адреса")
     print(f"Во втором файле (_temp2.txt) {_others} ip-адреса")

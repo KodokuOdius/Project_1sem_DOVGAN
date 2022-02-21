@@ -9,9 +9,14 @@
 # регистра в нижний.
 
 
-
 def weatherPrase():
+<<<<<<< HEAD
     wTOKEN = "4b734d044b0e17fb41f586befa454084"
+=======
+    #from settings import wTOKEN
+    wToken = "4b734d044b0e17fb41f586befa454084"
+    
+>>>>>>> ee94004a938143d97e1b8791d103d9e5c6bb5947
     data = __import__("requests").get(
         "http://api.openweathermap.org/data/2.5/forecast",
         params={
@@ -79,6 +84,7 @@ def ex2():
     print(*text)
 
 
+    
 while True:
 
     ex = input("Вариант 6. Выберите (0 - выход) задание: ")

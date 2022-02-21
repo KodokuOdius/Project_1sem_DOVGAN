@@ -1,6 +1,7 @@
 .vscode
 settings.py
 *.docx
+_temp*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

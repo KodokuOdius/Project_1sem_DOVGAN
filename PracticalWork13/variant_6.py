@@ -11,8 +11,7 @@
 
 
 def weatherPrase():
-    from settings import wTOKEN
-
+    wTOKEN = "4b734d044b0e17fb41f586befa454084"
     data = __import__("requests").get(
         "http://api.openweathermap.org/data/2.5/forecast",
         params={

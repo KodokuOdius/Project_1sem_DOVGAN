@@ -22,7 +22,7 @@ def solve():
     
 
     files = {
-        "in": open("ip_address.txt", "rt", encoding="utf-8"), 
+        "in": open("PracticalWork14/ip_address.txt", "rt", encoding="utf-8"), 
         "out1": open("_temp1.txt", "wt", encoding="utf-8"), 
         "out2": open("_temp2.txt", "wt", encoding="utf-8")
     }

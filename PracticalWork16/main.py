@@ -20,7 +20,7 @@ class Main(tk.Frame):
         outer_padx = 10
 
         self.add_img = tk.PhotoImage(file="DB/add-user.png")
-        self.btn_open_dialog = tk.Button(toolbar, text='Добавить игрока', command=self.open_dialog, bg='#5da130',
+        self.btn_open_dialog = tk.Button(toolbar, text='Добавить клиента', command=self.open_dialog, bg='#5da130',
                                     compound=tk.TOP, image=self.add_img, padx=5, pady=2, border='5')
         self.btn_open_dialog.pack(side=tk.LEFT, padx=outer_padx, pady=3)
 
@@ -87,7 +87,7 @@ class Main(tk.Frame):
 
 
     def view_records(self):
-        self.db.cur.execute("""SELECT * FROM tourists""")
+        self.db.cur.execute("""SELECT * FROM tourists ORDER BY tourist_id DESC""")
         [self.tree.delete(i) for i in self.tree.get_children()]
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 
@@ -104,23 +104,23 @@ class Main(tk.Frame):
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 
     def clean_data(self, surname, phone, country, region, duration, cost):
-        if re.findall(r"[^a-zA-ZА-ЯёЁа-я]", surname):
+        if not surname or re.findall(r"[^a-zA-ZА-ЯёЁа-я]", surname):
             return "Неверно указана Фамилия клиента"
 
         if not (phone.isdigit() and len(phone) == 11):
-            return "Неверно указан номер\n Пример: xxxxxxxxxxx"
+            return "Неверно указан номер\n Пример: 7xxxxxxxxxx"
 
-        if re.findall(r"[^a-zA-ZА-ЯёЁа-я\s]", country):
+        if not country or re.findall(r"[^a-zA-ZА-ЯёЁа-я\s]", country):
             return "Неверно указана страна"
 
-        if re.findall(r"[^a-zA-ZА-ЯёЁа-я\s]", region):
+        if not region or re.findall(r"[^a-zA-ZА-ЯёЁа-я\s]", region):
             return "Неверно указан регион"
         
         if not duration.isdigit():
-            return "Неверно указана продолжительность поездки"
+            return "Неверно указана\n продолжительность поездки"
         
         if not cost.isdigit():
-            return "Неверно указана тоимоть поездки"
+            return "Неверно указана cтоимоть поездки"
         
     def open_dialog(self):
         Child(root, app)

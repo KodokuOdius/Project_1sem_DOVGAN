@@ -15,32 +15,33 @@ class Main(tk.Frame):
         self.view_records()
 
     def init_main(self):
-        toolbar = tk.Frame(bg='#a0dea0', bd=4)
+        toolbar = tk.Frame(bg='#51ff00', bd=4)
         toolbar.pack(side=tk.TOP, fill=tk.X)
         outer_padx = 10
+        btn_color = '#ffc800'
 
         self.add_img = tk.PhotoImage(file="DB/add-user.png")
-        self.btn_open_dialog = tk.Button(toolbar, text='Добавить клиента', command=self.open_dialog, bg='#5da130',
+        self.btn_open_dialog = tk.Button(toolbar, text='Добавить клиента', command=self.open_dialog, bg=btn_color,
                                     compound=tk.TOP, image=self.add_img, padx=5, pady=2, border='5')
         self.btn_open_dialog.pack(side=tk.LEFT, padx=outer_padx, pady=3)
 
         self.update_img = tk.PhotoImage(file="DB/edit.png")
-        btn_edit_dialog = tk.Button(toolbar, text="Редактировать", command=self.open_update_dialog, bg='#5da130',
+        btn_edit_dialog = tk.Button(toolbar, text="Редактировать", command=self.open_update_dialog, bg=btn_color,
                                     compound=tk.TOP, image=self.update_img, padx=5, pady=2, border='5')
         btn_edit_dialog.pack(side=tk.LEFT, padx=outer_padx)
 
         self.delete_img = tk.PhotoImage(file="DB/trash.png")
-        btn_delete = tk.Button(toolbar, text="Удалить запись", command=self.delete_records, bg='#5da130',
+        btn_delete = tk.Button(toolbar, text="Удалить запись", command=self.delete_records, bg=btn_color,
                                     compound=tk.TOP, image=self.delete_img, padx=5, pady=2, border='5')
         btn_delete.pack(side=tk.LEFT, padx=outer_padx)
 
         self.search_img = tk.PhotoImage(file="DB/search.png")
-        btn_search = tk.Button(toolbar, text="Поиск записи", command=self.open_search_dialog, bg='#5da130',
+        btn_search = tk.Button(toolbar, text="Поиск записи", command=self.open_search_dialog, bg=btn_color,
                                compound=tk.TOP, image=self.search_img, padx=5, pady=2, border='5')
         btn_search.pack(side=tk.LEFT, padx=outer_padx)
 
         self.refresh_img = tk.PhotoImage(file="DB/refresh.png")
-        btn_refresh = tk.Button(toolbar, text="Обновить экран", command=self.view_records, bg='#5da130',
+        btn_refresh = tk.Button(toolbar, text="Обновить экран", command=self.view_records, bg=btn_color,
                                compound=tk.TOP, image=self.refresh_img, padx=5, pady=2, border='5')
         btn_refresh.pack(side=tk.LEFT, padx=outer_padx)
 
@@ -97,9 +98,8 @@ class Main(tk.Frame):
         self.db.con.commit()
         self.view_records()
 
-    def search_records(self, duration):
-        duration = (duration,)
-        self.db.cur.execute("""SELECT * FROM tourists WHERE duration >= ?""", duration)
+    def search_records(self, surname):
+        self.db.cur.execute(f"""SELECT * FROM tourists WHERE surname LIKE '{surname}%'""")
         [self.tree.delete(i) for i in self.tree.get_children()]
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 
@@ -235,8 +235,8 @@ class Search(tk.Toplevel):
         self.geometry("300x120+400+300")
         self.resizable(False, False)
 
-        label_search = tk.Label(self, text="Поиск производиться по длительности поздки,\n большей либо равной указаной в поле ввода")
-        label_search.place(x=15, y=10)
+        label_search = tk.Label(self, text="Поиск производиться по Фамилии клиента,\nсовподающей с ведёнными данными")
+        label_search.place(x=20, y=10)
 
         self.entry_search = ttk.Entry(self)
         self.entry_search.place(x=60, y=55, width=170)
